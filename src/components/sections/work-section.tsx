@@ -10,7 +10,7 @@ export function WorkSection() {
     >
       <div className="mx-auto w-full max-w-7xl">
         <div
-          className={`mb-12 transition-all duration-700 md:mb-16 ${
+          className={`mb-8 transition-all duration-700 md:mb-12 ${
             isVisible ? "translate-x-0 opacity-100" : "-translate-x-12 opacity-0"
           }`}
         >
@@ -20,12 +20,13 @@ export function WorkSection() {
           <p className="font-mono text-sm text-foreground/60 md:text-base">/ Актуальные риски в соцсетях</p>
         </div>
 
-        <div className="space-y-6 md:space-y-8">
+        <div className="space-y-4 md:space-y-6">
           {[
             {
               number: "01",
               title: "Взлом аккаунта",
               category: "Фишинг, подбор паролей, утечки данных",
+              desc: "Злоумышленники рассылают поддельные страницы входа или используют слитые базы паролей. Ваш аккаунт могут угнать за минуты.",
               year: "Риск #1",
               direction: "left",
             },
@@ -33,6 +34,7 @@ export function WorkSection() {
               number: "02",
               title: "Кража личности",
               category: "Сбор персональных данных из открытых профилей",
+              desc: "Имя, дата рождения, город, фото — всё это в открытом профиле позволяет мошенникам создать поддельную личность или взять кредит.",
               year: "Риск #2",
               direction: "right",
             },
@@ -40,6 +42,7 @@ export function WorkSection() {
               number: "03",
               title: "Слежка и доксинг",
               category: "Геолокация, деанонимизация, сталкинг",
+              desc: "Геотеги на фото, чекины и отметки друзей могут раскрыть ваш адрес. Доксинг — публичное раскрытие личных данных — стал инструментом давления.",
               year: "Риск #3",
               direction: "left",
             },
@@ -57,7 +60,7 @@ function ProjectCard({
   index,
   isVisible,
 }: {
-  project: { number: string; title: string; category: string; year: string; direction: string }
+  project: { number: string; title: string; category: string; desc: string; year: string; direction: string }
   index: number
   isVisible: boolean
 }) {
@@ -70,25 +73,28 @@ function ProjectCard({
 
   return (
     <div
-      className={`group flex items-center justify-between border-b border-foreground/10 py-6 transition-all duration-700 hover:border-foreground/20 md:py-8 ${getRevealClass()}`}
+      className={`group border-b border-foreground/10 py-5 transition-all duration-700 hover:border-foreground/20 md:py-6 ${getRevealClass()}`}
       style={{
         transitionDelay: `${index * 150}ms`,
         marginLeft: index % 2 === 0 ? "0" : "auto",
         maxWidth: index % 2 === 0 ? "85%" : "90%",
       }}
     >
-      <div className="flex items-baseline gap-4 md:gap-8">
-        <span className="font-mono text-sm text-foreground/30 transition-colors group-hover:text-foreground/50 md:text-base">
-          {project.number}
-        </span>
-        <div>
-          <h3 className="mb-1 font-sans text-2xl font-light text-foreground transition-transform duration-300 group-hover:translate-x-2 md:text-3xl lg:text-4xl">
-            {project.title}
-          </h3>
-          <p className="font-mono text-xs text-foreground/50 md:text-sm">{project.category}</p>
+      <div className="flex items-start justify-between gap-4">
+        <div className="flex items-baseline gap-4 md:gap-8">
+          <span className="font-mono text-sm text-foreground/30 transition-colors group-hover:text-foreground/50 md:text-base shrink-0">
+            {project.number}
+          </span>
+          <div>
+            <h3 className="mb-1 font-sans text-xl font-light text-foreground transition-transform duration-300 group-hover:translate-x-2 md:text-2xl lg:text-3xl">
+              {project.title}
+            </h3>
+            <p className="font-mono text-xs text-foreground/50 md:text-sm mb-2">{project.category}</p>
+            <p className="max-w-lg text-sm leading-relaxed text-foreground/60">{project.desc}</p>
+          </div>
         </div>
+        <span className="font-mono text-xs text-foreground/30 shrink-0 md:text-sm">{project.year}</span>
       </div>
-      <span className="font-mono text-xs text-foreground/30 md:text-sm">{project.year}</span>
     </div>
   )
 }

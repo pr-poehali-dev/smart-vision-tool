@@ -5,6 +5,7 @@ import { WorkSection } from "@/components/sections/work-section"
 import { ServicesSection } from "@/components/sections/services-section"
 import { AboutSection } from "@/components/sections/about-section"
 import { ContactSection } from "@/components/sections/contact-section"
+import { QuizSection } from "@/components/sections/quiz-section"
 import { MagneticButton } from "@/components/magnetic-button"
 import { useRef, useEffect, useState } from "react"
 
@@ -77,7 +78,7 @@ export default function Index() {
       const deltaX = touchStartX.current - touchEndX
 
       if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 50) {
-        if (deltaY > 0 && currentSection < 4) {
+        if (deltaY > 0 && currentSection < 5) {
           scrollToSection(currentSection + 1)
         } else if (deltaY < 0 && currentSection > 0) {
           scrollToSection(currentSection - 1)
@@ -147,7 +148,7 @@ export default function Index() {
         const scrollLeft = scrollContainerRef.current.scrollLeft
         const newSection = Math.round(scrollLeft / sectionWidth)
 
-        if (newSection !== currentSection && newSection >= 0 && newSection <= 4) {
+        if (newSection !== currentSection && newSection >= 0 && newSection <= 5) {
           setCurrentSection(newSection)
         }
 
@@ -226,7 +227,7 @@ export default function Index() {
         </button>
 
         <div className="hidden items-center gap-8 md:flex">
-          {["Главная", "Угрозы", "Инструменты", "О проекте", "Контакты"].map((item, index) => (
+          {["Главная", "Угрозы", "Инструменты", "О проекте", "Тест", "Контакты"].map((item, index) => (
             <button
               key={item}
               onClick={() => scrollToSection(index)}
@@ -244,8 +245,8 @@ export default function Index() {
           ))}
         </div>
 
-        <MagneticButton variant="secondary" onClick={() => scrollToSection(2)}>
-          Чек-лист
+        <MagneticButton variant="secondary" onClick={() => scrollToSection(4)}>
+          Пройти тест
         </MagneticButton>
       </nav>
 
@@ -281,9 +282,23 @@ export default function Index() {
               >
                 Пройти чек-лист
               </MagneticButton>
-              <MagneticButton size="lg" variant="secondary" onClick={() => scrollToSection(1)}>
-                Узнать об угрозах
+              <MagneticButton size="lg" variant="secondary" onClick={() => scrollToSection(4)}>
+                Пройти тест
               </MagneticButton>
+            </div>
+
+            {/* Quick stats row */}
+            <div className="mt-10 flex animate-in fade-in slide-in-from-bottom-4 flex-wrap gap-6 duration-1000 delay-500">
+              {[
+                { value: "2M+", label: "взломов в год" },
+                { value: "10 мин", label: "на защиту" },
+                { value: "5 шагов", label: "к безопасности" },
+              ].map((s) => (
+                <div key={s.label} className="flex items-baseline gap-2">
+                  <span className="font-sans text-2xl font-light text-foreground">{s.value}</span>
+                  <span className="font-mono text-xs text-foreground/50">{s.label}</span>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -300,6 +315,7 @@ export default function Index() {
         <WorkSection />
         <ServicesSection />
         <AboutSection scrollToSection={scrollToSection} />
+        <QuizSection scrollToSection={scrollToSection} />
         <ContactSection />
       </div>
 
