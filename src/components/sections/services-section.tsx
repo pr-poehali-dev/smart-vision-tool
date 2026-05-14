@@ -15,31 +15,31 @@ export function ServicesSection() {
           }`}
         >
           <h2 className="mb-2 font-sans text-5xl font-light tracking-tight text-foreground md:text-6xl lg:text-7xl">
-            Услуги
+            Инструменты
           </h2>
-          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Наши компетенции</p>
+          <p className="font-mono text-sm text-foreground/60 md:text-base">/ Всё для вашей защиты</p>
         </div>
 
         <div className="grid gap-8 md:grid-cols-2 md:gap-x-16 md:gap-y-12 lg:gap-x-24">
           {[
             {
-              title: "Веб-разработка",
-              description: "Создание современных веб-приложений любой сложности",
+              title: "Чек-лист безопасности",
+              description: "Интерактивная проверка настроек приватности с системой баллов и персональными рекомендациями",
               direction: "top",
             },
             {
-              title: "UI/UX Дизайн",
-              description: "Проектирование удобных и красивых интерфейсов",
+              title: "Генератор паролей",
+              description: "Создание надёжных паролей и оценка их стойкости в режиме реального времени",
               direction: "right",
             },
             {
-              title: "Мобильные приложения",
-              description: "Кроссплатформенная разработка для iOS и Android",
+              title: "База знаний",
+              description: "Пошаговые инструкции по защите аккаунтов во всех популярных социальных сетях",
               direction: "left",
             },
             {
-              title: "Консалтинг",
-              description: "Техническая экспертиза и стратегическое планирование",
+              title: "Тест на киберграмотность",
+              description: "Квиз для оценки уровня знаний о кибербезопасности и персональные советы",
               direction: "bottom",
             },
           ].map((service, i) => (
